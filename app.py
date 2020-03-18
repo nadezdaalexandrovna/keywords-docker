@@ -59,7 +59,7 @@ class AskKeywords(Resource):
 
             #Make the temporary directory
             make_output_directory(outputDirectory)
-            #st_u8 = st.encode('utf8')
+            st_u8 = st.encode('utf8')
             #key_word_extractor = KeywordExtractor(st_u8, outputDirectory)
             key_word_extractor = KeywordExtractor("json", st, outputDirectory)
             key_words_set = key_word_extractor.extract_keywords()
