@@ -1,4 +1,8 @@
 FROM ubuntu:16.04
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 MAINTAINER Nadezda Okinina "nadezda.okinina@eurac.edu"
 
@@ -10,25 +14,16 @@ RUN mkdir /opt/keywords-extractor
 WORKDIR /opt/keywords-extractor
 
 # get treetagger source and example salto articles from git
-RUN git clone https://github.com/commul/keywords-docker /opt/keywords-extractor
+RUN git clone https://github.com/nadezdaalexandrovna/keywords-docker /opt/keywords-extractor
 
 # install treetagger
 RUN sh /opt/keywords-extractor/treetagger/install-tagger.sh
 
 # install python libraries
-#RUN pip3 install argparse pprint treetaggerwrapper editdistance segtok langdetect regex typing requests
 RUN pip3 install -r /opt/keywords-extractor/requirements.txt
 
-# install nginx and uwsgi
-#RUN apt-get install -y nginx
-#RUN pip3 install -U uwsgi
-#COPY nginx.conf /etc/nginx/sites-available/keywords-extractor
-#RUN rm /etc/nginx/sites-enabled/default
-#RUN ln -s /etc/nginx/sites-available/keywords-extractor /etc/nginx/sites-enabled/keywords-extractor
-
-
 # get the keyword extraction script and its dependencies from git
-RUN git clone https://github.com/commul/salto-keywords /opt/keywords-extractor/keywords
+RUN git clone https://github.com/nadezdaalexandrovna/kw-extractor-salto /opt/keywords-extractor/keywords
 
 # set the environment variable used by the Python module treetaggerwrapper 
 ENV TAGDIR="/opt/keywords-extractor/treetagger/"
@@ -39,7 +34,3 @@ ENV TAGDIR="/opt/keywords-extractor/treetagger/"
 ENTRYPOINT ["python3"]
 
 CMD ["app.py"]
-
-#RUN uwsgi --socket 127.0.0.1:3031 --wsgi-file /opt/keywords-extractor/app.py --callable app --master --processes 4 --threads 2 --stats 127.0.0.1:9191
-
-#RUN uwsgi --socket 127.0.0.1:3031 --wsgi-file /opt/keywords-extractor/app.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9191
