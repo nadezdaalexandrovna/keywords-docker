@@ -25,7 +25,7 @@ RUN git clone https://github.com/nadezdaalexandrovna/kw-extractor-salto /opt/key
 ENV TAGDIR="/opt/keywords-extractor/treetagger/"
 
 # run the tests of the keywords extractor script
-#RUN python3 /opt/keywords-extractor/keywords/keyword_extractor_test.py
+RUN python3 /opt/keywords-extractor/keywords/keyword_extractor_test.py
 
 ENTRYPOINT ["python3"]
 
