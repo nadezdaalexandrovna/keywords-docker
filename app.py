@@ -11,6 +11,7 @@ from keyword_extractor_salto import KeywordExtractor
 import os
 import logging
 import shutil
+import json
 
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
