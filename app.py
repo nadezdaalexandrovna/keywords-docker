@@ -60,12 +60,12 @@ class AskKeywords(Resource):
 
             #Make the temporary directory
             make_output_directory(outputDirectory)
-            #st_u8 = st.encode('utf8') # for text
+            st_u8 = st.encode('utf8') # for text
             #st_u8 = json.dumps( st, ensure_ascii=False).encode('utf8') # for json
-            #key_word_extractor = KeywordExtractor(st_u8, outputDirectory)
+            key_word_extractor = KeywordExtractor(st_u8, outputDirectory)
             #key_word_extractor = KeywordExtractor("json", st_u8, outputDirectory)
-            jsonArticle = json.loads(st).encode('utf8')
-            key_word_extractor = KeywordExtractor("json", jsonArticle, outputDirectory)
+            #jsonArticle = json.loads(st).encode('utf8')
+            #key_word_extractor = KeywordExtractor("json", jsonArticle, outputDirectory)
             key_words_set = key_word_extractor.extract_keywords()
             
             kw_list.append(list(key_words_set))
