@@ -14,7 +14,7 @@ import requests
 import io
 
 
-inFile = io.open("salto-texts/10316.txt", mode="r", encoding="utf-8")
+inFile = io.open("salto-texts/21986.txt", mode="r", encoding="utf-8")
 st1 = inFile.read()
 
 inFile.close()
