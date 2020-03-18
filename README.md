@@ -10,13 +10,33 @@ This is not a production environment.
 
 Steps to follow to quickly test the keywords extraction:
 
-1 cd into the folder where the Dockerfile is
+1 Clone the repository:
+	```
+	git clone https://github.com/nadezdaalexandrovna/keywords-docker.git
+	```
 
-2 docker build --no-cache -t flask-ask .
+2 Go into the folder where the Dockerfile is:
+	```
+	cd keywords-docker
+	```
 
-3 docker run -p 5000:5000 flask-ask:latest
+3 Build the docker:
+	```
+	docker build --no-cache -t flask-ask .
+	```
 
-4 Open another terminal and run:
- python call-url.py
+3 Cun the docker:
+	```
+	docker run -p 5000:5000 flask-ask:latest
+	```
 
-5 Open the file out.txt and see the extracted keywords.
+4 Call the flask service via http:
+
+	Open another terminal and run:
+	```
+ 	python call-url.py
+ 	```
+
+5 See the result:
+
+	Open the file out.txt and see the extracted keywords.
