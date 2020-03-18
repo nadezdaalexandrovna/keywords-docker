@@ -35,7 +35,7 @@ def make_output_directory(folder: str) -> None:
         logging.warning("\nCould not create folder "+folder+" due to the following error:\n")
         logging.warning(e)
 
-    
+class AskKeywords(Resource):    
     def post(self):
         parser.add_argument('salto_texts_list', action='append')
         args = parser.parse_args()
