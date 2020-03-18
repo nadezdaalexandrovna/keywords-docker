@@ -1,0 +1,27 @@
+FROM ubuntu:16.04
+
+MAINTAINER Nadezda Okinina "nadezda.okinina@eurac.edu"
+
+# install git and python3 with pip
+RUN apt-get update -y && apt-get install -y nano git python3-pip
+
+# make the working directory
+RUN mkdir /opt/keywords-extractor
+WORKDIR /opt/keywords-extractor
+
+# get treetagger source and example salto articles from git
+RUN git clone https://github.com/commul/keywords-docker /opt/keywords-extractor
+
+# install treetagger
+RUN sh /opt/keywords-extractor/treetagger/install-tagger.sh
+
+# install python libraries
+#RUN pip3 install argparse pprint treetaggerwrapper editdistance segtok langdetect regex typing requests
+RUN pip3 install -r requirements.txt
+
+# get the keyword extraction script and its dependencies from git
+RUN git clone https://github.com/commul/salto-keywords /opt/keywords-extractor/keywords
+
+ENTRYPOINT [ "python3","/opt/keywords-extractor/keywords/keyword_extractor_salto.py", "-t", "/opt/keywords-extractor/treetagger" ]
+
+#CMD [ "python3","/opt/keywords-extractor/keywords/keyword_extractor_salto.py", "-i", "/opt/keywords-extractor/salto-texts/10316.txt" , "-o", "/opt/keywords-extractor/salto-kw", "-t", "/opt/keywords-extractor/treetagger"]

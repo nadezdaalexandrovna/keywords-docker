@@ -1,0 +1,11 @@
+argparse
+pprint
+treetaggerwrapper
+editdistance
+segtok
+langdetect
+regex
+typing
+requests
+flask
+flask_restful
